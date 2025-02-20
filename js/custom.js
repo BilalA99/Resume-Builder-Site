@@ -48,6 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+
 // Apply resume template selection
 function applyTemplate() {
     const selectedTemplate = document.querySelector('input[name="resume_template"]:checked').value;

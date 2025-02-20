@@ -34,19 +34,44 @@ body {
 }
 
 /* Navbar Styling */
+/* Force navbar background color */
 .navbar {
-  background-color: #00c6a9; /* Main navbar background */
+  background-color: #00c6a9 !important; /* Set a solid background */
+  color: white;
+  transition: background-color 0.3s ease-in-out;
 }
 
-.navbar-nav .nav-link {
-  color: #ffffff;
+/* Ensure links are always visible */
+.navbar .nav-link {
+  color: white !important;
   text-transform: uppercase;
-  transition: color 0.3s ease;
 }
 
-.navbar-nav .nav-link:hover {
-  color: #252525;
+.navbar .nav-link:hover {
+  color: #252525 !important;
 }
+
+/* Dropdown menu styling */
+.navbar-nav .dropdown-menu {
+  background-color: white;
+  border: none;
+}
+
+.navbar-nav .dropdown-menu .dropdown-item {
+  color: #000;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-nav .dropdown-menu .dropdown-item:hover {
+  background-color: #00c6a9;
+  color: white;
+}
+
+/* Ensure navbar is visible even on sub-pages */
+.sub_page .navbar {
+  background-color: #00c6a9 !important;
+}
+
 
 /* Dropdown Menu */
 .navbar-nav .dropdown-menu {

@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
+
+body {
+    background: #f4f4f4;
+    font-family: "Montserrat", sans-serif;
+}
+
+.resume {
+    max-width: 800px;
+    background: white;
+    margin: 50px auto;
+    padding: 20px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.base {
+    background: #283593;
+    color: white;
+    padding: 20px;
+}
+
+.profile {
+    text-align: center;
+}
+
+.profile .photo img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+.profile .info h1 {
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.profile .info h2 {
+    font-size: 18px;
+    color: #ffb300;
+}
+
+.about {
+    margin-top: 20px;
+}
+
+.contact {
+    margin-top: 20px;
+}
+
+.contact p {
+    font-size: 14px;
+    line-height: 24px;
+}
+
+.func {
+    padding: 20px;
+}
+
+.func h3 {
+    color: #283593;
+}
+
+.work, .edu, .skills-prog, .interests {
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.skills-prog ul li, .interests ul li {
+    background: #283593;
+    color: white;
+    padding: 5px;
+    margin: 5px 0;
+    border-radius: 5px;
+    display: inline-block;
+}
