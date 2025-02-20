@@ -1,0 +1,89 @@
+$white: #ffffff;
+$black: #000000;
+$primary1: #00c6a9;
+$primary2: #252525;
+$textCol: #999;
+
+@mixin main-font {
+  font-family: 'Roboto', sans-serif;
+}
+
+@mixin hero_btn($col1, $col2, $pad1, $pad2, $bRadius) {
+  display: inline-block;
+  padding: $pad1 $pad2;
+  background-color: $col1;
+  color: $col2;
+  border-radius: $bRadius;
+
+  &:hover {
+    background-color: darken($color: $col1, $amount: 10);
+  }
+}
+
+@mixin upperBold {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+/* General Styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  color: #0c0c0c;
+  background-color: #ffffff;
+  overflow-x: hidden;
+}
+
+/* Navbar Styling */
+.navbar {
+  background-color: #00c6a9; /* Main navbar background */
+}
+
+.navbar-nav .nav-link {
+  color: #ffffff;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #252525;
+}
+
+/* Dropdown Menu */
+.navbar-nav .dropdown-menu {
+  background-color: #ffffff;
+  border: none;
+  display: none;
+}
+
+.navbar-nav .dropdown-menu.show {
+  display: block;
+}
+
+.navbar-nav .dropdown-menu .dropdown-item {
+  color: #000;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-nav .dropdown-menu .dropdown-item:hover {
+  background-color: #00c6a9;
+  color: #ffffff;
+}
+
+/* Responsive Mobile Fixes */
+.navbar-toggler {
+  border: none;
+  outline: none;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+@media (max-width: 992px) {
+  .navbar-nav .dropdown-menu {
+    display: none;
+  }
+  .navbar-nav .dropdown-menu.show {
+    display: block;
+  }
+}
