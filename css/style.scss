@@ -34,50 +34,30 @@ body {
 }
 
 /* Navbar Styling */
-/* Force navbar background color */
 .navbar {
-  background-color: #00c6a9 !important; /* Set a solid background */
+  background-color: #00c6a9 !important; /* Consistent background */
   color: white;
   transition: background-color 0.3s ease-in-out;
 }
 
-/* Ensure links are always visible */
+/* Ensure links are visible */
 .navbar .nav-link {
   color: white !important;
   text-transform: uppercase;
+  padding: 10px 15px;
+  transition: color 0.3s ease-in-out;
 }
 
 .navbar .nav-link:hover {
   color: #252525 !important;
 }
 
-/* Dropdown menu styling */
+/* Dropdown Menu */
 .navbar-nav .dropdown-menu {
   background-color: white;
   border: none;
-}
-
-.navbar-nav .dropdown-menu .dropdown-item {
-  color: #000;
-  transition: background-color 0.3s ease;
-}
-
-.navbar-nav .dropdown-menu .dropdown-item:hover {
-  background-color: #00c6a9;
-  color: white;
-}
-
-/* Ensure navbar is visible even on sub-pages */
-.sub_page .navbar {
-  background-color: #00c6a9 !important;
-}
-
-
-/* Dropdown Menu */
-.navbar-nav .dropdown-menu {
-  background-color: #ffffff;
-  border: none;
   display: none;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-nav .dropdown-menu.show {
@@ -87,6 +67,7 @@ body {
 .navbar-nav .dropdown-menu .dropdown-item {
   color: #000;
   transition: background-color 0.3s ease;
+  padding: 10px;
 }
 
 .navbar-nav .dropdown-menu .dropdown-item:hover {
@@ -94,7 +75,12 @@ body {
   color: #ffffff;
 }
 
-/* Responsive Mobile Fixes */
+/* Ensure Navbar Works on All Pages */
+.sub_page .navbar {
+  background-color: #00c6a9 !important;
+}
+
+/* Mobile Responsive Fixes */
 .navbar-toggler {
   border: none;
   outline: none;
