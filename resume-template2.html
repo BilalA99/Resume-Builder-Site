@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume Template 2</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/resume-template2.css">
+</head>
+
+<body>
+<div class="resume">
+  <div class="base">
+    <div class="profile">
+      <div class="info">
+        <h1 class="name" id="fullName">[Full Name]</h1>
+        <h2 class="job" id="jobTitle">[Job Title]</h2>
+      </div>
+    </div>
+    <div class="about">
+      <h3>About Me</h3>
+      <p id="aboutMe">[About Me]</p>
+    </div>
+    <div class="contact">
+      <h3>Contact</h3>
+      <p><i class="fas fa-envelope"></i> <span id="email">[Email]</span></p>
+      <p><i class="fas fa-phone"></i> <span id="phone">[Phone]</span></p>
+    </div>
+  </div>
+
+  <div class="func">
+    <div class="work" id="workExperienceSection">
+      <h3>Work Experience</h3>
+      <ul id="workExperience"></ul>
+    </div>
+
+    <div class="edu" id="educationSection">
+      <h3>Education</h3>
+      <ul id="education"></ul>
+    </div>
+
+    <div class="skills-prog" id="skillsSection">
+      <h3>Skills</h3>
+      <ul id="skills"></ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    let resumeData = JSON.parse(localStorage.getItem("resumeData"));
+    if (!resumeData) {
+      alert("No resume data found. Please start over.");
+      window.location.href = "create-resume.html";
+      return;
+    }
+
+    document.getElementById("fullName").textContent = resumeData.fullName;
+    document.getElementById("email").textContent = resumeData.email;
+    document.getElementById("phone").textContent = resumeData.phone;
+    document.getElementById("jobTitle").textContent = resumeData.jobTitle;
+    document.getElementById("aboutMe").textContent = resumeData.about;
+
+    if (resumeData.experience.trim() !== "") {
+      resumeData.experience.split("\n").forEach(exp => {
+        let li = document.createElement("li");
+        li.textContent = exp;
+        document.getElementById("workExperience").appendChild(li);
+      });
+    } else {
+      document.getElementById("workExperienceSection").style.display = "none";
+    }
+
+    if (resumeData.education.trim() !== "") {
+      resumeData.education.split("\n").forEach(edu => {
+        let li = document.createElement("li");
+        li.textContent = edu;
+        document.getElementById("education").appendChild(li);
+      });
+    } else {
+      document.getElementById("educationSection").style.display = "none";
+    }
+
+    if (resumeData.skills.length > 0 && resumeData.skills[0] !== "") {
+      resumeData.skills.forEach(skill => {
+        let li = document.createElement("li");
+        li.textContent = skill;
+        document.getElementById("skills").appendChild(li);
+      });
+    } else {
+      document.getElementById("skillsSection").style.display = "none";
+    }
+  });
+</script>
+
+</body>
+</html>

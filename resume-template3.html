@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume Template 3</title>
+  <link rel="stylesheet" href="css/resume-template3.css">
+</head>
+<body>
+
+<div id="header">
+  <p id="fullName">[Full Name]</p>
+  <p id="email">[Email]</p>
+  <p id="phone">[Phone]</p>
+</div>
+
+<div class="container">
+  <div class="about">
+    <h3>About Me</h3>
+    <p id="aboutMe">[About Me]</p>
+  </div>
+
+  <div class="work">
+    <h3>Work Experience</h3>
+    <ul id="workExperience"></ul>
+  </div>
+
+  <div class="education">
+    <h3>Education</h3>
+    <ul id="education"></ul>
+  </div>
+
+  <div class="skills">
+    <h3>Skills</h3>
+    <ul id="skills"></ul>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    let resumeData = JSON.parse(localStorage.getItem("resumeData"));
+    if (!resumeData) {
+      alert("No resume data found. Please fill out the form again.");
+      window.location.href = "create-resume.html";
+      return;
+    }
+
+    document.getElementById("fullName").textContent = resumeData.fullName || "Your Name";
+    document.getElementById("email").textContent = resumeData.email || "your.email@example.com";
+    document.getElementById("phone").textContent = resumeData.phone || "(123) 456-7890";
+    document.getElementById("aboutMe").textContent = resumeData.about || "Your summary here...";
+
+    const workExperience = document.getElementById("workExperience");
+    workExperience.innerHTML = "";
+    resumeData.experience.split("\n").forEach(exp => {
+      let li = document.createElement("li");
+      li.textContent = exp;
+      workExperience.appendChild(li);
+    });
+
+    const education = document.getElementById("education");
+    education.innerHTML = "";
+    resumeData.education.split("\n").forEach(edu => {
+      let li = document.createElement("li");
+      li.textContent = edu;
+      education.appendChild(li);
+    });
+
+    const skills = document.getElementById("skills");
+    skills.innerHTML = "";
+    resumeData.skills.forEach(skill => {
+      let li = document.createElement("li");
+      li.textContent = skill;
+      skills.appendChild(li);
+    });
+  });
+</script>
+
+</body>
+</html>
