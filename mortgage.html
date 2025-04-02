@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mortgage Calculator</title>
+  <link rel="stylesheet" href="css/style.css">
+ <!-- Link to your existing styles -->
+  <script src="js/calculator.js" defer></script> <!-- Updated path -->
+</head>
+<body>
+
+<!-- Navigation Menu (reuse your existing structure) -->
+<nav class="navbar custom_nav-container">
+  <ul class="navbar-nav">
+    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+    <li class="nav-item"><a class="nav-link active" href="mortgage.html">Mortgage Calculator</a></li>
+    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Main Mortgage Calculator Form -->
+<main class="mortgage-page">
+  <h1>Mortgage Calculator</h1>
+  <p>Fill in the details below and click Calculate to estimate your monthly payment.</p>
+
+  <form name="Form1" class="mortgage-form">
+    <label for="Amount">Mortgage Amount ($):</label>
+    <input type="text" id="Amount" name="Amount" placeholder="e.g., 250000">
+
+    <label for="Rate">Interest Rate (%):</label>
+    <input type="text" id="Rate" name="Rate" placeholder="e.g., 6.5">
+
+    <label for="Years">Loan Term (Years):</label>
+    <select id="Years" name="Years">
+      <option value="15">15</option>
+      <option value="20">20</option>
+      <option value="25">25</option>
+      <option value="30">30</option>
+    </select>
+
+    <div class="buttons">
+      <input type="button" value="Calculate" onclick="mortCalc(Form1)">
+      <input type="reset" value="Reset">
+    </div>
+
+    <label for="Payment">Monthly Payment:</label>
+    <input type="text" id="Payment" name="Payment" readonly>
+  </form>
+</main>
+
+</body>
+</html>
