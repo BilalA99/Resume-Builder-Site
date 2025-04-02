@@ -4,44 +4,45 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Resume Template 2</title>
-  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="css/resume-template2.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="css/resume-template2.css">
 </head>
 
 <body>
-<div class="resume">
-  <div class="base">
-    <div class="profile">
-      <div class="info">
-        <h1 class="name" id="fullName">[Full Name]</h1>
-        <h2 class="job" id="jobTitle">[Job Title]</h2>
+<div class="resume-content">
+  <div class="container">
+    <div class="header">
+      <div class="full-name">
+        <span class="first-name" id="fullName">[Full Name]</span>
+      </div>
+      <div class="contact-info">
+        <span class="email">Email: </span>
+        <span class="email-val" id="email">[Email]</span>
+        <span class="separator"></span>
+        <span class="phone">Phone: </span>
+        <span class="phone-val" id="phone">[Phone]</span>
+      </div>
+      <div class="about">
+        <span class="position" id="jobTitle">[Job Title]</span>
+        <span class="desc" id="aboutMe">[About Me]</span>
       </div>
     </div>
-    <div class="about">
-      <h3>About Me</h3>
-      <p id="aboutMe">[About Me]</p>
-    </div>
-    <div class="contact">
-      <h3>Contact</h3>
-      <p><i class="fas fa-envelope"></i> <span id="email">[Email]</span></p>
-      <p><i class="fas fa-phone"></i> <span id="phone">[Phone]</span></p>
-    </div>
-  </div>
 
-  <div class="func">
-    <div class="work" id="workExperienceSection">
-      <h3>Work Experience</h3>
-      <ul id="workExperience"></ul>
-    </div>
+    <div class="details">
+      <div class="section" id="workExperienceSection">
+        <div class="section__title">Work Experience</div>
+        <div class="section__list" id="workExperience"></div>
+      </div>
 
-    <div class="edu" id="educationSection">
-      <h3>Education</h3>
-      <ul id="education"></ul>
-    </div>
+      <div class="section" id="educationSection">
+        <div class="section__title">Education</div>
+        <div class="section__list" id="education"></div>
+      </div>
 
-    <div class="skills-prog" id="skillsSection">
-      <h3>Skills</h3>
-      <ul id="skills"></ul>
+      <div class="section" id="skillsSection">
+        <div class="section__title">Skills</div>
+        <div class="skills" id="skills"></div>
+      </div>
     </div>
   </div>
 </div>
@@ -50,9 +51,17 @@
   document.addEventListener("DOMContentLoaded", function() {
     let resumeData = JSON.parse(localStorage.getItem("resumeData"));
     if (!resumeData) {
-      alert("No resume data found. Please start over.");
-      window.location.href = "create-resume.html";
-      return;
+      // For preview mode, use sample data
+      resumeData = {
+        fullName: "John Doe",
+        email: "john.doe@example.com",
+        phone: "(555) 123-4567",
+        jobTitle: "Software Engineer",
+        about: "Experienced software engineer with a passion for creating efficient and scalable solutions.",
+        experience: "Senior Software Engineer at Tech Corp (2018-2023)\nSoftware Engineer at StartUp Inc (2015-2018)",
+        education: "BS in Computer Science from University of Technology (2015)",
+        skills: ["JavaScript", "Python", "React", "Node.js", "SQL"]
+      };
     }
 
     document.getElementById("fullName").textContent = resumeData.fullName;
@@ -61,31 +70,34 @@
     document.getElementById("jobTitle").textContent = resumeData.jobTitle;
     document.getElementById("aboutMe").textContent = resumeData.about;
 
-    if (resumeData.experience.trim() !== "") {
+    if (resumeData.experience && resumeData.experience.trim() !== "") {
       resumeData.experience.split("\n").forEach(exp => {
-        let li = document.createElement("li");
-        li.textContent = exp;
-        document.getElementById("workExperience").appendChild(li);
+        let div = document.createElement("div");
+        div.classList.add("section__list-item");
+        div.textContent = exp;
+        document.getElementById("workExperience").appendChild(div);
       });
     } else {
       document.getElementById("workExperienceSection").style.display = "none";
     }
 
-    if (resumeData.education.trim() !== "") {
+    if (resumeData.education && resumeData.education.trim() !== "") {
       resumeData.education.split("\n").forEach(edu => {
-        let li = document.createElement("li");
-        li.textContent = edu;
-        document.getElementById("education").appendChild(li);
+        let div = document.createElement("div");
+        div.classList.add("section__list-item");
+        div.textContent = edu;
+        document.getElementById("education").appendChild(div);
       });
     } else {
       document.getElementById("educationSection").style.display = "none";
     }
 
-    if (resumeData.skills.length > 0 && resumeData.skills[0] !== "") {
+    if (resumeData.skills && resumeData.skills.length > 0 && resumeData.skills[0] !== "") {
       resumeData.skills.forEach(skill => {
-        let li = document.createElement("li");
-        li.textContent = skill;
-        document.getElementById("skills").appendChild(li);
+        let div = document.createElement("div");
+        div.classList.add("skills__item");
+        div.textContent = skill;
+        document.getElementById("skills").appendChild(div);
       });
     } else {
       document.getElementById("skillsSection").style.display = "none";
