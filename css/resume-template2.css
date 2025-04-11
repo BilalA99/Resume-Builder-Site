@@ -1,79 +1,166 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --text-color: #2c3e50;
+    --light-gray: #ecf0f1;
+    --white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
-    background: #f4f4f4;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: #f5f6fa;
 }
 
-.resume {
-    max-width: 800px;
-    background: white;
-    margin: 50px auto;
-    padding: 20px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+.resume-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
 }
 
-.base {
-    background: #283593;
-    color: white;
-    padding: 20px;
+.resume-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+    background-color: var(--white);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
 }
 
-.profile {
-    text-align: center;
+.left-column {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 2rem;
 }
 
-.profile .photo img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
+.right-column {
+    padding: 2rem;
 }
 
-.profile .info h1 {
-    font-size: 24px;
-    margin: 10px 0;
+.profile-section {
+    margin-bottom: 2rem;
 }
 
-.profile .info h2 {
-    font-size: 18px;
-    color: #ffb300;
+.profile-section h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
 }
 
-.about {
-    margin-top: 20px;
+.profile-section h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
 }
 
-.contact {
-    margin-top: 20px;
+.contact-info {
+    margin-top: 1rem;
 }
 
-.contact p {
-    font-size: 14px;
-    line-height: 24px;
+.contact-info p {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
 }
 
-.func {
-    padding: 20px;
+.resume-section {
+    margin-bottom: 2rem;
 }
 
-.func h3 {
-    color: #283593;
+.resume-section h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--secondary-color);
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 0.5rem;
 }
 
-.work, .edu, .skills-prog, .interests {
-    margin-bottom: 20px;
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
+.skill-item {
+    background-color: var(--secondary-color);
+    color: var(--white);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
 }
 
-.skills-prog ul li, .interests ul li {
-    background: #283593;
-    color: white;
-    padding: 5px;
-    margin: 5px 0;
-    border-radius: 5px;
-    display: inline-block;
+.experience-item, .education-item {
+    margin-bottom: 1.5rem;
+}
+
+.experience-item h4, .education-item h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.company, .school {
+    font-weight: 500;
+    color: var(--secondary-color);
+}
+
+.duration {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0.25rem 0;
+}
+
+.description {
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+}
+
+@media print {
+    body {
+        background-color: var(--white);
+    }
+
+    .resume-container {
+        margin: 0;
+        padding: 0;
+    }
+
+    .resume-content {
+        box-shadow: none;
+    }
+
+    .left-column {
+        background-color: var(--primary-color) !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}
+
+@media (max-width: 768px) {
+    .resume-content {
+        grid-template-columns: 1fr;
+    }
+
+    .left-column {
+        padding: 1.5rem;
+    }
+
+    .right-column {
+        padding: 1.5rem;
+    }
+
+    .profile-section h1 {
+        font-size: 2rem;
+    }
 }

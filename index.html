@@ -44,20 +44,25 @@
     <!-- Header -->
     <header class="header_section">
         <div class="container-fluid">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <!-- Navigation Bar -->
+            <nav class="navbar navbar-expand-lg custom_nav-container">
                 <a class="navbar-brand" href="index.html">
-                    <img src="images/logo.png" alt="Logo">
+                    <img src="images/logo.png" alt="Resume Builder Logo">
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-                        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="create-resume.html">Create Resume</a></li>
-                        <li class="nav-item"><a class="nav-link" href="select_template.html">Select Template</a></li>
-                        <li class="nav-item"><a class="nav-link" href="preview_resume.html">Preview & Download</a></li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="create-resume.html">Create Resume</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="preview_templates.html">Preview Templates</a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -69,8 +74,6 @@
                                 <a class="dropdown-item" href="mortgage.html">Mortgage Calculator</a>
                                 <a class="dropdown-item" href="form-calculator.html">Service Calculator</a>
                             </div>
-
-
                         </li>
                     </ul>
                 </div>

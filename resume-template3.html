@@ -1,109 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Resume Template 3</title>
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,700" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="css/resume-template3.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimal Elegant Resume Template</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .resume-content {
+            background: white;
+            padding: 60px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            border-bottom: 1px solid #00c6a9;
+            padding-bottom: 30px;
+            margin-bottom: 40px;
+        }
+
+        .name {
+            font-size: 2.8em;
+            font-weight: 300;
+            margin: 0;
+            color: #2c3e50;
+            letter-spacing: -1px;
+        }
+
+        .job-title {
+            font-size: 1.4em;
+            color: #00c6a9;
+            margin: 10px 0;
+            font-weight: 400;
+        }
+
+        .contact-info {
+            color: #666;
+            font-size: 0.9em;
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .section {
+            margin: 40px 0;
+        }
+
+        .section-title {
+            font-size: 1.2em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #00c6a9;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .section-content {
+            font-weight: 300;
+            color: #2c3e50;
+            line-height: 1.8;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .skill-item {
+            background: transparent;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            border: 1px solid #00c6a9;
+            color: #00c6a9;
+        }
+
+        .divider {
+            height: 1px;
+            background: #eee;
+            margin: 30px 0;
+        }
+
+        @media print {
+            body {
+                padding: 0;
+            }
+            .resume-content {
+                box-shadow: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .resume-content {
+                padding: 30px;
+            }
+            .name {
+                font-size: 2em;
+            }
+            .contact-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="resume-content">
+        <header class="header">
+            <h1 class="name" data-field="fullName">John Doe</h1>
+            <div class="job-title" data-field="jobTitle">Software Engineer</div>
+            <div class="contact-info">
+                <div data-field="email">john@example.com</div>
+                <div data-field="phone">+1 234 567 8900</div>
+            </div>
+        </header>
 
-<div class="resume-content">
-  <div class="container">
-    <div class="header">
-      <div class="full-name">
-        <span class="first-name" id="fullName">[Full Name]</span>
-      </div>
-      <div class="contact-info">
-        <span class="email">Email: </span>
-        <span class="email-val" id="email">[Email]</span>
-        <span class="separator"></span>
-        <span class="phone">Phone: </span>
-        <span class="phone-val" id="phone">[Phone]</span>
-      </div>
-      <div class="about">
-        <span class="position" id="jobTitle">[Job Title]</span>
-        <span class="desc" id="aboutMe">[About Me]</span>
-      </div>
+        <div class="section">
+            <h2 class="section-title">About</h2>
+            <div class="section-content" data-field="about">
+                A passionate professional with experience in...
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section">
+            <h2 class="section-title">Experience</h2>
+            <div class="section-content" data-field="experience">
+                Work experience details...
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section">
+            <h2 class="section-title">Education</h2>
+            <div class="section-content" data-field="education">
+                Education details...
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-container" data-field="skills">
+                <!-- Skills will be populated here -->
+            </div>
+        </div>
     </div>
-
-    <div class="details">
-      <div class="section" id="workExperienceSection">
-        <div class="section__title">Work Experience</div>
-        <div class="section__list" id="workExperience"></div>
-      </div>
-
-      <div class="section" id="educationSection">
-        <div class="section__title">Education</div>
-        <div class="section__list" id="education"></div>
-      </div>
-
-      <div class="section" id="skillsSection">
-        <div class="section__title">Skills</div>
-        <div class="skills" id="skills"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    let resumeData = JSON.parse(localStorage.getItem("resumeData"));
-    if (!resumeData) {
-      // For preview mode, use sample data
-      resumeData = {
-        fullName: "John Doe",
-        email: "john.doe@example.com",
-        phone: "(555) 123-4567",
-        jobTitle: "Software Engineer",
-        about: "Experienced software engineer with a passion for creating efficient and scalable solutions.",
-        experience: "Senior Software Engineer at Tech Corp (2018-2023)\nSoftware Engineer at StartUp Inc (2015-2018)",
-        education: "BS in Computer Science from University of Technology (2015)",
-        skills: ["JavaScript", "Python", "React", "Node.js", "SQL"]
-      };
-    }
-
-    document.getElementById("fullName").textContent = resumeData.fullName;
-    document.getElementById("email").textContent = resumeData.email;
-    document.getElementById("phone").textContent = resumeData.phone;
-    document.getElementById("jobTitle").textContent = resumeData.jobTitle;
-    document.getElementById("aboutMe").textContent = resumeData.about;
-
-    if (resumeData.experience && resumeData.experience.trim() !== "") {
-      resumeData.experience.split("\n").forEach(exp => {
-        let div = document.createElement("div");
-        div.classList.add("section__list-item");
-        div.textContent = exp;
-        document.getElementById("workExperience").appendChild(div);
-      });
-    } else {
-      document.getElementById("workExperienceSection").style.display = "none";
-    }
-
-    if (resumeData.education && resumeData.education.trim() !== "") {
-      resumeData.education.split("\n").forEach(edu => {
-        let div = document.createElement("div");
-        div.classList.add("section__list-item");
-        div.textContent = edu;
-        document.getElementById("education").appendChild(div);
-      });
-    } else {
-      document.getElementById("educationSection").style.display = "none";
-    }
-
-    if (resumeData.skills && resumeData.skills.length > 0 && resumeData.skills[0] !== "") {
-      resumeData.skills.forEach(skill => {
-        let div = document.createElement("div");
-        div.classList.add("skills__item");
-        div.textContent = skill;
-        document.getElementById("skills").appendChild(div);
-      });
-    } else {
-      document.getElementById("skillsSection").style.display = "none";
-    }
-  });
-</script>
-
 </body>
 </html>

@@ -31,20 +31,25 @@
 <!-- Header section starts -->
 <header class="header_section">
   <div class="container-fluid">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg custom_nav-container">
       <a class="navbar-brand" href="index.html">
-        <img src="images/logo.png" alt="Logo">
+        <img src="images/logo.png" alt="Resume Builder Logo">
       </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-              aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link active" href="create-resume.html">Create Resume</a></li>
-          <li class="nav-item"><a class="nav-link" href="select_template.html">Select Template</a></li>
-          <li class="nav-item"><a class="nav-link" href="preview_resume.html">Preview & Download</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="create-resume.html">Create Resume</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="preview_templates.html">Preview Templates</a>
+          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -53,6 +58,8 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" href="about.html">About Us</a>
               <a class="dropdown-item" href="contact.html">Contact</a>
+              <a class="dropdown-item" href="mortgage.html">Mortgage Calculator</a>
+              <a class="dropdown-item" href="form-calculator.html">Service Calculator</a>
             </div>
           </li>
         </ul>
@@ -71,65 +78,67 @@
     </div>
 
     <!-- Progress Bar -->
-    <div class="progress mb-4">
-      <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+    <div class="progress-container">
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+      </div>
     </div>
 
     <form id="resumeForm" class="resume-form">
-      <div class="form-section">
-        <h3><i class="fas fa-user"></i> Personal Information</h3>
-        <div class="form-group">
-          <label for="fullName">Full Name *</label>
-          <input type="text" class="form-control" id="fullName" placeholder="Enter your full name" required>
-          <div class="invalid-feedback">Please enter your full name</div>
+      <!-- Form Sections -->
+      <div class="form-sections">
+        <div class="form-section" id="personal-info">
+          <h3><i class="fas fa-user"></i> Personal Information</h3>
+          <div class="form-group">
+            <label for="fullName">Full Name *</label>
+            <input type="text" class="form-control" id="fullName" name="fullName" placeholder="Enter your full name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number *</label>
+            <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter your phone number" required>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="email">Email Address *</label>
-          <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
-          <div class="invalid-feedback">Please enter a valid email address</div>
-        </div>
-        <div class="form-group">
-          <label for="phone">Phone Number *</label>
-          <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number" required>
-          <div class="invalid-feedback">Please enter your phone number</div>
-        </div>
-      </div>
 
-      <div class="form-section">
-        <h3><i class="fas fa-briefcase"></i> Professional Information</h3>
-        <div class="form-group">
-          <label for="jobTitle">Job Title</label>
-          <input type="text" class="form-control" id="jobTitle" placeholder="Enter your job title">
+        <div class="form-section" id="professional-info">
+          <h3><i class="fas fa-briefcase"></i> Professional Information</h3>
+          <div class="form-group">
+            <label for="jobTitle">Job Title</label>
+            <input type="text" class="form-control" id="jobTitle" name="jobTitle" placeholder="Enter your job title">
+          </div>
+          <div class="form-group">
+            <label for="about">About Me</label>
+            <textarea class="form-control" id="about" name="about" rows="3" placeholder="Write a short professional summary"></textarea>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="about">About Me</label>
-          <textarea class="form-control" id="about" rows="3" placeholder="Write a short professional summary"></textarea>
-        </div>
-      </div>
 
-      <div class="form-section">
-        <h3><i class="fas fa-history"></i> Experience & Education</h3>
-        <div class="form-group">
-          <label for="experience">Work Experience</label>
-          <textarea class="form-control" id="experience" rows="3" placeholder="List your previous work experience"></textarea>
+        <div class="form-section" id="experience">
+          <h3><i class="fas fa-history"></i> Experience & Education</h3>
+          <div class="form-group">
+            <label for="experience">Work Experience</label>
+            <textarea class="form-control" id="experience" name="experience" rows="3" placeholder="List your previous work experience"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="education">Education</label>
+            <textarea class="form-control" id="education" name="education" rows="2" placeholder="Enter your educational background"></textarea>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="education">Education</label>
-          <textarea class="form-control" id="education" rows="2" placeholder="Enter your educational background"></textarea>
-        </div>
-      </div>
 
-      <div class="form-section">
-        <h3><i class="fas fa-tools"></i> Skills</h3>
-        <div class="form-group">
-          <label for="skills">Skills (comma-separated)</label>
-          <input type="text" class="form-control" id="skills" placeholder="e.g., JavaScript, HTML, CSS, Project Management">
+        <div class="form-section" id="skills">
+          <h3><i class="fas fa-tools"></i> Skills</h3>
+          <div class="form-group">
+            <label for="skills">Skills (comma-separated)</label>
+            <input type="text" class="form-control" id="skills" name="skills" placeholder="e.g., JavaScript, HTML, CSS, Project Management">
+          </div>
         </div>
       </div>
 
       <div class="form-actions">
         <button type="button" class="btn btn-secondary" onclick="window.location.href='index.html'">Cancel</button>
-        <button type="submit" class="btn btn-primary">Next: Select Template</button>
+        <button type="submit" class="btn btn-primary" id="submitBtn">Next: Select Template</button>
       </div>
     </form>
   </div>
@@ -151,8 +160,9 @@
   // Form validation and auto-save functionality
   document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('resumeForm');
-    const inputs = form.querySelectorAll('input, textarea');
+    const sections = document.querySelectorAll('.form-section');
     const progressBar = document.querySelector('.progress-bar');
+    const inputs = form.querySelectorAll('input, textarea');
     
     // Load saved data if exists
     const savedData = localStorage.getItem('resumeData');
@@ -170,28 +180,36 @@
       });
     }
 
-    // Update progress bar
+    // Show all sections
+    sections.forEach(section => {
+      section.classList.add('active');
+    });
+
+    // Update progress based on filled fields
     function updateProgress() {
       const totalFields = inputs.length;
       const filledFields = Array.from(inputs).filter(input => input.value.trim() !== '').length;
       const progress = (filledFields / totalFields) * 100;
-      progressBar.style.width = `${progress}%`;
+      progressBar.style.width = progress + '%';
       progressBar.setAttribute('aria-valuenow', progress);
-      progressBar.textContent = `${Math.round(progress)}%`;
+      progressBar.textContent = Math.round(progress) + '%';
     }
 
     // Auto-save functionality
     inputs.forEach(input => {
       input.addEventListener('input', function() {
-        const formData = {};
-        inputs.forEach(field => {
-          if (field.id === 'skills') {
-            formData[field.id] = field.value.split(',').map(skill => skill.trim()).filter(skill => skill);
+        const formData = new FormData(form);
+        const resumeData = {};
+        
+        for (let [key, value] of formData.entries()) {
+          if (key === 'skills') {
+            resumeData[key] = value.split(',').map(skill => skill.trim()).filter(skill => skill);
           } else {
-            formData[field.id] = field.value;
+            resumeData[key] = value;
           }
-        });
-        localStorage.setItem('resumeData', JSON.stringify(formData));
+        }
+        
+        localStorage.setItem('resumeData', JSON.stringify(resumeData));
         updateProgress();
       });
     });
@@ -213,7 +231,7 @@
           input.classList.remove('is-invalid');
         }
       });
-
+      
       // Email validation
       const email = document.getElementById('email');
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -239,7 +257,7 @@
         localStorage.setItem("resumeData", JSON.stringify(resumeData));
 
         // Redirect to template selection page
-        window.location.href = "select_template.html";
+        window.location.href = "preview_templates.html";
       }
     });
 
@@ -258,11 +276,16 @@
   box-shadow: 0 0 20px rgba(0,0,0,0.1);
 }
 
+.form-sections {
+  margin-bottom: 30px;
+}
+
 .form-section {
   margin-bottom: 30px;
   padding: 20px;
-  background: #f8f9fa;
-  border-radius: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background: #fff;
 }
 
 .form-section h3 {
@@ -272,6 +295,10 @@
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.form-section h3 i {
+  margin-right: 10px;
 }
 
 .form-group {
@@ -320,15 +347,21 @@
   border-color: #00937d;
 }
 
+.progress-container {
+  margin: 20px 0;
+  padding: 0 20px;
+}
+
 .progress {
-  height: 10px;
+  height: 25px;
+  background-color: #f5f5f5;
   border-radius: 5px;
-  background-color: #e9ecef;
+  overflow: hidden;
 }
 
 .progress-bar {
   background-color: #00c6a9;
-  transition: width 0.3s ease;
+  transition: width 0.5s ease-in-out;
 }
 
 @media (max-width: 768px) {
@@ -336,7 +369,7 @@
     padding: 15px;
   }
   
-  .form-section {
+  .form-sections {
     padding: 15px;
   }
   
