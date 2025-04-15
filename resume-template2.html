@@ -2,235 +2,113 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Modern Two-Column Resume Template</title>
+  <title>Resume Template 2</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <style>
     body {
-      font-family: 'Roboto', sans-serif;
-      line-height: 1.6;
-      color: #333;
-      max-width: 800px;
-      margin: 0 auto;
+      font-family: 'Montserrat', sans-serif;
+      margin: 0; padding: 0;
+      background: #ffffff;
+    }
+    .resume {
+      width: 960px;
+      margin: 20px auto;
+      display: flex;
+      box-shadow: 10px 10px #0e1442;
+    }
+    .base {
+      width: 30%;
+      background: #283593;
+      color: white;
+      padding: 30px 15px;
+    }
+    .func {
+      width: 70%;
+      padding: 30px;
+      background: #ffffff;
+    }
+    .profile {
+      text-align: center;
+      background: #ffb300;
       padding: 20px;
     }
-
-    .resume-content {
-      display: grid;
-      grid-template-columns: 300px 1fr;
-      gap: 30px;
-      background: white;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
-    }
-
-    .left-column {
-      background: #2c3e50;
-      color: white;
-      padding: 40px;
-    }
-
-    .right-column {
-      padding: 40px;
-    }
-
-    .profile-section {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .profile-name {
-      font-size: 1.8em;
-      font-weight: 700;
+    .profile .name { font-size: 1.8rem; font-weight: bold; color: #1a237e; }
+    .profile .job { font-size: 1.2rem; color: #303f9f; }
+    h3 {
+      color: #ffb300;
+      border-bottom: 1px solid #ffb300;
       margin-bottom: 10px;
     }
-
-    .profile-title {
-      color: #00c6a9;
-      font-size: 1.2em;
-      margin-bottom: 20px;
-    }
-
-    .contact-info {
-      margin-bottom: 30px;
-    }
-
-    .contact-info div {
-      margin-bottom: 10px;
-      font-size: 0.9em;
-    }
-
-    .section {
-      margin-bottom: 30px;
-    }
-
-    .section-title {
-      color: #00c6a9;
-      font-size: 1.3em;
-      margin-bottom: 15px;
-      position: relative;
-    }
-
-    .section-title::after {
-      content: '';
-      display: block;
-      width: 50px;
-      height: 3px;
-      background: #00c6a9;
-      margin-top: 5px;
-    }
-
-    .left-column .section-title {
-      color: white;
-    }
-
-    .left-column .section-title::after {
-      background: white;
-    }
-
-    .skills-container {
+    .skills {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 5px;
     }
-
-    .skill-item {
-      background: rgba(255,255,255,0.1);
-      padding: 5px 15px;
-      border-radius: 15px;
-      font-size: 0.9em;
-    }
-
-    .experience-item, .education-item {
-      margin-bottom: 20px;
-    }
-
-    @media print {
-      body {
-        padding: 0;
-      }
-      .resume-content {
-        box-shadow: none;
-      }
-      .left-column {
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .resume-content {
-        grid-template-columns: 1fr;
-      }
-      .left-column, .right-column {
-        padding: 20px;
-      }
+    .skills span {
+      background: #ffb300;
+      padding: 5px 10px;
+      border-radius: 5px;
+      color: #1a237e;
     }
   </style>
 </head>
-
 <body>
-  <div class="resume-content">
-    <div class="left-column">
-      <div class="profile-section">
-        <div class="profile-name" data-field="fullName">John Doe</div>
-        <div class="profile-title" data-field="jobTitle">Software Engineer</div>
+  <div class="resume">
+    <div class="base">
+      <div class="profile">
+        <div class="name" data-field="fullName">John Doe</div>
+        <div class="job" data-field="jobTitle">Software Engineer</div>
       </div>
-
-      <div class="section">
-        <h2 class="section-title">Contact</h2>
-        <div class="contact-info">
-          <div data-field="email">john@example.com</div>
-          <div data-field="phone">+1 234 567 8900</div>
-        </div>
-      </div>
-
-      <div class="section">
-        <h2 class="section-title">Skills</h2>
-        <div class="skills-container" data-field="skills">
-          <!-- Skills will be populated here -->
-        </div>
-      </div>
-
-      <div class="section">
-        <h2 class="section-title">About Me</h2>
-        <div data-field="about">
-          A passionate professional with experience in...
-        </div>
-      </div>
+      <h3>Contact</h3>
+      <p data-field="email">john@example.com</p>
+      <p data-field="phone">(123) 456-7890</p>
     </div>
-
-    <div class="right-column">
-      <div class="section">
-        <h2 class="section-title">Professional Experience</h2>
-        <div data-field="experience">
-          Work experience details...
-        </div>
-      </div>
-
-      <div class="section">
-        <h2 class="section-title">Education</h2>
-        <div data-field="education">
-          Education details...
-        </div>
-      </div>
+    <div class="func">
+      <h3>About Me</h3>
+      <p data-field="about">Summary content here.</p>
+      <h3>Experience</h3>
+      <p data-field="experience">Experience content.</p>
+      <h3>Education</h3>
+      <p data-field="education">Education content.</p>
+      <h3>Skills</h3>
+      <div class="skills" data-field="skills"></div>
     </div>
   </div>
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       // Get data from localStorage
-      const resumeData = JSON.parse(localStorage.getItem('resumeData')) || {};
+      const resumeData = JSON.parse(localStorage.getItem('resumeData') || '{}');
 
       // Populate personal information
-      document.querySelector('.profile-name').textContent = resumeData.fullName || 'John Doe';
-      document.querySelector('.profile-title').textContent = resumeData.jobTitle || 'Software Engineer';
+      document.querySelector('[data-field="fullName"]').textContent = resumeData.fullName || 'John Doe';
+      document.querySelector('[data-field="jobTitle"]').textContent = resumeData.jobTitle || 'Software Engineer';
       document.querySelector('[data-field="email"]').textContent = resumeData.email || 'john@example.com';
-      document.querySelector('[data-field="phone"]').textContent = resumeData.phone || '+1 234 567 8900';
-      document.querySelector('[data-field="about"]').textContent = resumeData.aboutMe || 'A passionate professional with experience in...';
+      document.querySelector('[data-field="phone"]').textContent = resumeData.phone || '(123) 456-7890';
+      document.querySelector('[data-field="about"]').textContent = resumeData.about || 'Summary content here.';
 
       // Populate work experience
-      const workExperienceContainer = document.querySelector('[data-field="experience"]');
-      if (resumeData.workExperience) {
-        resumeData.workExperience.forEach(job => {
-          if (job.company && job.position) {
-            const jobElement = document.createElement('div');
-            jobElement.className = 'experience-item';
-            jobElement.innerHTML = `
-              <h4>${job.position}</h4>
-              <p class="company">${job.company}</p>
-              <p class="duration">${job.startDate} - ${job.endDate}</p>
-              <p class="description">${job.description}</p>
-            `;
-            workExperienceContainer.appendChild(jobElement);
-          }
-        });
+      const experienceContainer = document.querySelector('[data-field="experience"]');
+      if (resumeData.experience) {
+        experienceContainer.textContent = resumeData.experience;
       }
 
       // Populate education
       const educationContainer = document.querySelector('[data-field="education"]');
       if (resumeData.education) {
-        resumeData.education.forEach(edu => {
-          if (edu.school && edu.degree) {
-            const eduElement = document.createElement('div');
-            eduElement.className = 'education-item';
-            eduElement.innerHTML = `
-              <h4>${edu.degree}</h4>
-              <p class="school">${edu.school}</p>
-              <p class="duration">${edu.startDate} - ${edu.endDate}</p>
-              <p class="description">${edu.description}</p>
-            `;
-            educationContainer.appendChild(eduElement);
-          }
-        });
+        educationContainer.textContent = resumeData.education;
       }
 
       // Populate skills
       const skillsContainer = document.querySelector('[data-field="skills"]');
       if (resumeData.skills) {
-        const skillsList = resumeData.skills.split(',').map(skill => skill.trim());
+        const skillsList = Array.isArray(resumeData.skills) 
+          ? resumeData.skills 
+          : resumeData.skills.split(',').map(skill => skill.trim());
+        
         skillsList.forEach(skill => {
           if (skill) {
-            const skillElement = document.createElement('div');
-            skillElement.className = 'skill-item';
+            const skillElement = document.createElement('span');
             skillElement.textContent = skill;
             skillsContainer.appendChild(skillElement);
           }

@@ -258,23 +258,39 @@
         return response.text();
       })
       .then(html => {
-        // Create a temporary container to parse the HTML
-        const temp = document.createElement('div');
-        temp.innerHTML = html;
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
         
-        // Extract the main content (excluding header and footer)
-        const mainContent = temp.querySelector('.resume-content');
-        if (mainContent) {
-          previewContent.innerHTML = mainContent.outerHTML;
-        } else {
-          previewContent.innerHTML = html;
-        }
+        // Copy the resume markup
+        const resumeContent = doc.body.innerHTML;
+        previewContent.innerHTML = resumeContent;
+
+        // Copy all <style> blocks
+        doc.querySelectorAll('style').forEach(style => {
+          if (!document.head.querySelector(`style[data-template="${template}"]`)) {
+            const cloned = style.cloneNode(true);
+            cloned.setAttribute('data-template', template);
+            document.head.appendChild(cloned);
+          }
+        });
+
+        // Copy Google Fonts if any
+        doc.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+          if (!document.head.querySelector(`link[href="${link.href}"]`)) {
+            const cloned = link.cloneNode(true);
+            document.head.appendChild(cloned);
+          }
+        });
       })
       .catch(error => {
         console.error('Error loading template:', error);
         previewContent.innerHTML = `
           <div class="alert alert-danger m-3">
-            <i class="fas fa-exclamation-circle"></i> Error loading template preview. Please try again.
+            <i class="fas fa-exclamation-circle"></i> Error loading template preview: ${error.message}
+            <br>
+            <button onclick="previewTemplate('${template}')" class="btn btn-outline-danger mt-2">
+              <i class="fas fa-sync"></i> Try Again
+            </button>
           </div>
         `;
       });

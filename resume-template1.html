@@ -2,160 +2,146 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Professional Resume Template</title>
+  <title>Resume Template 1</title>
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic|Open+Sans:300,400,500,700|Waiting+for+the+Sunrise|Shadows+Into+Light" rel="stylesheet">
   <style>
+    * { box-sizing: border-box; }
+    html { font-size: 100%; }
     body {
-      font-family: 'Arial', sans-serif;
-      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      font-family: Lora, serif;
+      font-size: 18px;
       color: #333;
-      max-width: 800px;
+      line-height: 1.4;
+    }
+    .wrapper { height: 100%; }
+    .left {
+      background: rgba(0,0,0,0.025);
+      border-right: 1px solid rgba(0,0,0,.05);
+      float: right;
+      height: 100%;
+      min-width: 256px;
+      position: fixed;
+      width: 33.33%;
+    }
+    .right {
+      float: right;
+      height: 100%;
+      position: relative;
+      width: 66.66%;
+    }
+    .name-hero {
+      height: 290px;
+      position: absolute;
+      width: 85%;
+      top: 0; bottom: 0; left: 0; right: 0;
+      margin: auto;
+    }
+    .me-img {
+      background: url('https://placehold.co/150x150') no-repeat center;
+      background-size: 100%;
+      border-radius: 100%;
+      height: 150px;
       margin: 0 auto;
-      padding: 20px;
+      width: 150px;
     }
-
-    .resume-content {
-      background: white;
-      padding: 40px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    .name-text { text-align: center; }
+    .name-text h1 { font-family: 'Open Sans', sans-serif; font-size: 1.5em; }
+    .name-text h1 em { color: rgba(0,0,0,0.3); font-style: normal; font-weight: 700; }
+    .inner { margin: 0 auto; max-width: 975px; padding: 3em; }
+    .inner h1 { font-size: 1.75em; }
+    .inner p { color: rgba(0,0,0,.5); }
+    .inner section { margin: 80px auto; }
+    ul.skill-set {
+      list-style: none;
+      margin-top: -10px;
+      max-width: 570px;
+      padding: 0;
     }
-
-    .header {
-      text-align: center;
-      margin-bottom: 30px;
-      border-bottom: 2px solid #00c6a9;
-      padding-bottom: 20px;
-    }
-
-    .name {
-      font-size: 2.5em;
-      color: #2c3e50;
-      margin: 0;
-      font-weight: bold;
-    }
-
-    .job-title {
-      font-size: 1.5em;
-      color: #00c6a9;
-      margin: 10px 0;
-    }
-
-    .contact-info {
-      margin: 15px 0;
-      color: #666;
-    }
-
-    .section {
-      margin: 25px 0;
-    }
-
-    .section-title {
-      font-size: 1.3em;
-      color: #2c3e50;
-      border-bottom: 2px solid #00c6a9;
-      padding-bottom: 5px;
-      margin-bottom: 15px;
-    }
-
-    .skills-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .skill-item {
-      background: #f8f9fa;
-      padding: 5px 15px;
-      border-radius: 15px;
-      font-size: 0.9em;
-      color: #2c3e50;
-      border: 1px solid #00c6a9;
-    }
-
-    @media print {
-      body {
-        padding: 0;
-      }
-      .resume-content {
-        box-shadow: none;
-      }
+    ul.skill-set li {
+      background: rgba(0,0,0,.75);
+      border-radius: 5px;
+      color: white;
+      display: inline-block;
+      margin: 15px 15px 0 0;
+      padding: 10px;
     }
   </style>
 </head>
 <body>
-
-<div class="resume-content">
-  <div class="header">
-    <h1 class="name" data-field="fullName">John Doe</h1>
-    <div class="job-title" data-field="jobTitle">Software Engineer</div>
-    <div class="contact-info">
-      <div data-field="email">john@example.com</div>
-      <div data-field="phone">+1 234 567 8900</div>
+  <div class="wrapper clearfix">
+    <div class="left">
+      <div class="name-hero">
+        <div style="height: 150px;"></div>
+        <div class="name-text">
+          <h1><span data-field="fullName">John Doe</span></h1>
+          <p data-field="email">john@example.com</p>
+          <p data-field="phone">(123) 456-7890</p>
+        </div>
+      </div>
+    </div>
+    <div class="right">
+      <div class="inner">
+        <section>
+          <h1>Professional Summary</h1>
+          <p data-field="about">Short about me summary.</p>
+        </section>
+        <section>
+          <h1>Work Experience</h1>
+          <p data-field="experience">Experience content here.</p>
+        </section>
+        <section>
+          <h1>Education</h1>
+          <p data-field="education">Education content here.</p>
+        </section>
+        <section>
+          <h1>Skills</h1>
+          <ul class="skill-set" data-field="skills">
+            <!-- Skills will be injected here -->
+          </ul>
+        </section>
+      </div>
     </div>
   </div>
-
-  <div class="section">
-    <h2 class="section-title">About Me</h2>
-    <div data-field="about">
-      A passionate professional with experience in...
-    </div>
-  </div>
-
-  <div class="section">
-    <h2 class="section-title">Professional Experience</h2>
-    <div data-field="experience">
-      Work experience details...
-    </div>
-  </div>
-
-  <div class="section">
-    <h2 class="section-title">Education</h2>
-    <div data-field="education">
-      Education details...
-    </div>
-  </div>
-
-  <div class="section">
-    <h2 class="section-title">Skills</h2>
-    <div class="skills-container" data-field="skills">
-      <!-- Skills will be populated here -->
-    </div>
-  </div>
-</div>
-
+</body>
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const data = JSON.parse(localStorage.getItem("resumeData") || "{}");
+  document.addEventListener('DOMContentLoaded', function() {
+    // Get data from localStorage
+    const resumeData = JSON.parse(localStorage.getItem('resumeData') || '{}');
 
-    if (data.fullName) document.querySelector(".name").textContent = data.fullName;
-    if (data.email) document.querySelector(".contact-info div:nth-child(1)").textContent = data.email;
-    if (data.phone) document.querySelector(".contact-info div:nth-child(2)").textContent = data.phone;
-    if (data.jobTitle) document.querySelector(".job-title").textContent = data.jobTitle;
-    if (data.about) document.querySelector(".about").textContent = data.about;
+    // Populate personal information
+    document.querySelector('[data-field="fullName"]').textContent = resumeData.fullName || 'John Doe';
+    document.querySelector('[data-field="email"]').textContent = resumeData.email || 'john@example.com';
+    document.querySelector('[data-field="phone"]').textContent = resumeData.phone || '(123) 456-7890';
+    document.querySelector('[data-field="about"]').textContent = resumeData.about || 'Short about me summary.';
 
-    const expContainer = document.querySelector(".experience");
-    if (data.experience && expContainer) {
-      expContainer.textContent = data.experience;
+    // Populate work experience
+    const experienceContainer = document.querySelector('[data-field="experience"]');
+    if (resumeData.experience) {
+      experienceContainer.textContent = resumeData.experience;
     }
 
-    const eduContainer = document.querySelector(".education");
-    if (data.education && eduContainer) {
-      eduContainer.textContent = data.education;
+    // Populate education
+    const educationContainer = document.querySelector('[data-field="education"]');
+    if (resumeData.education) {
+      educationContainer.textContent = resumeData.education;
     }
 
-    const skillsContainer = document.querySelector(".skills-container");
-    if (Array.isArray(data.skills) && skillsContainer) {
-      data.skills.forEach(skill => {
-        if (skill.trim()) {
-          const li = document.createElement("div");
-          li.className = "skill-item";
-          li.textContent = skill;
-          skillsContainer.appendChild(li);
+    // Populate skills
+    const skillsContainer = document.querySelector('[data-field="skills"]');
+    if (resumeData.skills) {
+      const skillsList = Array.isArray(resumeData.skills) 
+        ? resumeData.skills 
+        : resumeData.skills.split(',').map(skill => skill.trim());
+      
+      skillsList.forEach(skill => {
+        if (skill) {
+          const skillElement = document.createElement('li');
+          skillElement.textContent = skill;
+          skillsContainer.appendChild(skillElement);
         }
       });
     }
   });
 </script>
-
-</body>
 </html>
