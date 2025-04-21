@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Social News App</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+<!-- Header -->
+<header class="header_section">
+    <div class="container-fluid">
+        <!-- Navigation Bar -->
+        <nav class="navbar navbar-expand-lg custom_nav-container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/logo.png" alt="Resume Builder Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="create-resume.html">Create Resume</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="preview_templates.html">Preview Templates</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            More
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="about.html">About Us</a>
+                            <a class="dropdown-item" href="my-brand.html">My Brand</a>
+                            <a class="dropdown-item" href="contact.html">Contact</a>
+                            <a class="dropdown-item" href="mortgage.html">Mortgage Calculator</a>
+                            <a class="dropdown-item" href="form-calculator.html">Service Calculator</a>
+                            <a class="dropdown-item" href="social-news.html">Social News</a> <!-- ✅ New Item -->
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+<!-- End Header -->
+
+
+<!-- Main Section -->
+<main class="container my-5">
+    <h1 class="text-center mb-4">Social News App</h1>
+    <p class="text-center mb-4">Submit and manage news links below:</p>
+
+    <!-- Action Buttons -->
+    <div class="text-center mb-4">
+        <button class="btn btn-success" onclick="addLink()">Add New Link</button>
+        <button class="btn btn-danger" onclick="removeLink()">Remove Link</button>
+    </div>
+
+    <!-- Links List -->
+    <div id="linkList" class="row">
+        <!-- Populated dynamically -->
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="footer_section">
+    <div class="container text-center">
+        <p>&copy; <span id="displayYear"></span> Resume Builder. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/custom.js"></script>
+
+<script>
+    let links = JSON.parse(localStorage.getItem("socialLinks") || "[]");
+
+    function normalizeURL(url) {
+      if (!url.startsWith("http://") && !url.startsWith("https://")) {
+        return "http://" + url;
+      }
+      return url;
+    }
+
+    function saveLinks() {
+      localStorage.setItem("socialLinks", JSON.stringify(links));
+    }
+
+    function showLinkList() {
+      const container = document.getElementById("linkList");
+      container.innerHTML = "";
+
+      if (links.length === 0) {
+        container.innerHTML = `<div class="col-12"><p class="text-center text-muted">No links added yet.</p></div>`;
+        return;
+      }
+
+      links.forEach((link, index) => {
+        const card = document.createElement("div");
+        card.className = "col-md-6 mb-4";
+
+        card.innerHTML = `
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">${link.title}</h5>
+              <p class="card-text mb-1">
+                <strong>Author:</strong> ${link.author}
+              </p>
+              <p class="card-text">
+                <strong>URL:</strong> <a href="${link.url}" target="_blank">${link.url}</a>
+              </p>
+              <span class="badge badge-primary">Link #${index + 1}</span>
+            </div>
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+    }
+
+    function addLink() {
+      const title = prompt("Enter the link title:");
+      if (!title) return;
+
+      let url = prompt("Enter the link URL:");
+      if (!url) return;
+      url = normalizeURL(url);
+
+      const author = prompt("Enter the author/submitter:");
+      if (!author) return;
+
+      links.push({ title, url, author });
+      saveLinks();
+      showLinkList();
+    }
+
+    function removeLink() {
+      if (links.length === 0) {
+        alert("There are no links to remove.");
+        return;
+      }
+
+      let index;
+      do {
+        const input = prompt(`Enter the index (1-${links.length}) of the link to remove:`);
+        index = parseInt(input);
+      } while (isNaN(index) || index < 1 || index > links.length);
+
+      links.splice(index - 1, 1);
+      saveLinks();
+      showLinkList();
+    }
+
+    // Auto-display links on page load
+    $(document).ready(() => {
+      showLinkList();
+    });
+</script>
+
+</body>
+</html>
