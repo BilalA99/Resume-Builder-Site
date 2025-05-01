@@ -9,14 +9,13 @@
     <title>Service Calculator - Resume Builder</title>
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.css" />
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
+    <!-- Custom Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <!-- Site Styles -->
     <link rel="stylesheet" href="css/style.css" />
-    <!-- Responsive CSS -->
     <link rel="stylesheet" href="css/responsive.css" />
 </head>
 
@@ -25,38 +24,30 @@
 <!-- Header -->
 <header class="header_section">
     <div class="container-fluid">
-        <!-- Navigation Bar -->
         <nav class="navbar navbar-expand-lg custom_nav-container">
             <a class="navbar-brand" href="index.html">
-                <img src="images/logo.png" alt="Resume Builder Logo">
+                <img src="images/logo.png" alt="Resume Builder Logo" />
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="create-resume.html">Create Resume</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="preview_templates.html">Preview Templates</a>
-                    </li>
+                    <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="create-resume.html">Create Resume</a></li>
+                    <li class="nav-item"><a class="nav-link" href="preview_templates.html">Preview Templates</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            More
-                        </a>
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="about.html">About Us</a>
                             <a class="dropdown-item" href="my-brand.html">My Brand</a>
                             <a class="dropdown-item" href="contact.html">Contact</a>
                             <a class="dropdown-item" href="mortgage.html">Mortgage Calculator</a>
                             <a class="dropdown-item" href="form-calculator.html">Service Calculator</a>
-                            <a class="dropdown-item" href="social-news.html">Social News</a> <!-- ✅ New Item -->
+                            <a class="dropdown-item" href="social-news.html">Social News</a>
                         </div>
                     </li>
                 </ul>
@@ -66,102 +57,86 @@
 </header>
 <!-- End Header -->
 
-
 <!-- Calculator Section -->
-<section class="calculator_section layout_padding">
+<section class="layout_padding">
     <div class="container">
-        <div class="heading_container">
-            <h2 class="text-center mb-5">Resume Service Calculator</h2>
-            <p class="text-center mb-4">Select the services you need and see the total cost in real-time</p>
+        <div class="heading_container text-center mb-4">
+            <h2 class="font-weight-bold">Service Calculator</h2>
+            <p class="text-muted">Choose services to estimate your total</p>
         </div>
 
-        <div class="calculator-form-container p-4 rounded" style="background-color: #f8f9fa; box-shadow: 0 0 15px rgba(0,0,0,0.1);">
-            <form id="service-calculator">
+        <div class="p-4 rounded shadow-sm" style="background-color: #f9f9f9;">
+            <form id="calculatorForm">
                 <!-- Resume Review -->
-                <div class="form-row mb-3 align-items-center">
-                    <div class="col-6">
+                <div class="row align-items-center mb-3">
+                    <div class="col-md-6">
                         <label for="qty_review" class="font-weight-bold">Resume Review</label>
-                        <p class="text-muted small">Professional review of your resume with feedback</p>
+                        <p class="small text-muted">Receive detailed feedback from experts</p>
                     </div>
                     <div class="col-3">
-                        <input type="number" id="qty_review" class="form-control qty" min="0" value="0">
+                        <input type="number" id="qty_review" class="form-control qty" value="0" min="0" />
                     </div>
-                    <div class="col-2">
-                        <input type="text" id="price_review" class="form-control" readonly>
-                    </div>
-                    <div class="col-1">
-                        <span class="text-muted">$25 each</span>
+                    <div class="col-3">
+                        <input type="text" id="price_review" class="form-control" readonly />
                     </div>
                 </div>
 
-                <!-- Cover Letter Writing -->
-                <div class="form-row mb-3 align-items-center">
-                    <div class="col-6">
-                        <label for="qty_cover" class="font-weight-bold">Cover Letter Writing</label>
-                        <p class="text-muted small">Custom cover letter tailored to your job application</p>
+                <!-- Cover Letter -->
+                <div class="row align-items-center mb-3">
+                    <div class="col-md-6">
+                        <label for="qty_cover" class="font-weight-bold">Cover Letter</label>
+                        <p class="small text-muted">Custom cover letter tailored to your job</p>
                     </div>
                     <div class="col-3">
-                        <input type="number" id="qty_cover" class="form-control qty" min="0" value="0">
+                        <input type="number" id="qty_cover" class="form-control qty" value="0" min="0" />
                     </div>
-                    <div class="col-2">
-                        <input type="text" id="price_cover" class="form-control" readonly>
-                    </div>
-                    <div class="col-1">
-                        <span class="text-muted">$40 each</span>
+                    <div class="col-3">
+                        <input type="text" id="price_cover" class="form-control" readonly />
                     </div>
                 </div>
 
                 <!-- LinkedIn Optimization -->
-                <div class="form-row mb-3 align-items-center">
-                    <div class="col-6">
+                <div class="row align-items-center mb-3">
+                    <div class="col-md-6">
                         <label for="qty_linkedin" class="font-weight-bold">LinkedIn Optimization</label>
-                        <p class="text-muted small">Optimize your LinkedIn profile for better visibility</p>
+                        <p class="small text-muted">Update your profile for professional exposure</p>
                     </div>
                     <div class="col-3">
-                        <input type="number" id="qty_linkedin" class="form-control qty" min="0" value="0">
+                        <input type="number" id="qty_linkedin" class="form-control qty" value="0" min="0" />
                     </div>
-                    <div class="col-2">
-                        <input type="text" id="price_linkedin" class="form-control" readonly>
-                    </div>
-                    <div class="col-1">
-                        <span class="text-muted">$30 each</span>
+                    <div class="col-3">
+                        <input type="text" id="price_linkedin" class="form-control" readonly />
                     </div>
                 </div>
 
                 <!-- Express Delivery -->
-                <div class="form-row mb-4 align-items-center">
-                    <div class="col-6">
+                <div class="row align-items-center mb-4">
+                    <div class="col-md-6">
                         <label for="chk_rush" class="font-weight-bold">Express Delivery</label>
-                        <p class="text-muted small">Get your completed services within 24 hours</p>
+                        <p class="small text-muted">Get it done within 24 hours</p>
                     </div>
                     <div class="col-3">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="chk_rush">
-                            <label class="custom-control-label" for="chk_rush">Express</label>
-                        </div>
+                        <input type="checkbox" id="chk_rush" class="form-check-input" />
+                        <label for="chk_rush" class="ml-2">Enable</label>
                     </div>
-                    <div class="col-2">
-                        <input type="text" id="price_rush" class="form-control" readonly>
-                    </div>
-                    <div class="col-1">
-                        <span class="text-muted">$15 flat</span>
+                    <div class="col-3">
+                        <input type="text" id="price_rush" class="form-control" readonly />
                     </div>
                 </div>
 
-                <hr class="my-4">
+                <hr />
 
                 <!-- Total -->
-                <div class="form-row align-items-center">
-                    <div class="col-6 offset-6">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h4 class="mb-0 font-weight-bold">Total:</h4>
-                            <h4 class="mb-0 font-weight-bold" id="total_value">$0</h4>
-                        </div>
+                <div class="row justify-content-end">
+                    <div class="col-md-6 text-right">
+                        <h4 class="font-weight-bold">Total: <span id="total_value">$0</span></h4>
                     </div>
                 </div>
 
                 <div class="text-center mt-4">
-                    <button type="button" class="btn btn-primary" style="background-color: #00c6a9; border-color: #00c6a9;">Proceed to Payment</button>
+                    <button type="button" class="btn btn-primary px-5" style="background-color: #00c6a9; border: none;">
+                        Proceed to Payment
+                    </button>
                 </div>
             </form>
         </div>
@@ -169,55 +144,51 @@
 </section>
 <!-- End Calculator Section -->
 
-<!-- Footer Section -->
+<!-- Footer -->
 <footer class="footer_section">
     <div class="container">
         <p>&copy; <span id="displayYear"></span> Resume Builder. All Rights Reserved.</p>
     </div>
 </footer>
-<!-- End Footer Section -->
+<!-- End Footer -->
 
-<!-- Scripts -->
+<!-- JS -->
 <script src="js/jquery-3.4.1.min.js"></script>
 <script src="js/bootstrap.js"></script>
-<script src="js/custom.js"></script>
-
-<!-- Calculator Script -->
 <script>
-    let unit_price = {
-        review: 25,
-        cover: 40,
-        linkedin: 30,
-        rush: 15
+    const unitPrice = {
+      review: 25,
+      cover: 40,
+      linkedin: 30,
+      rush: 15
     };
 
     function calculateTotal() {
-        let item_price = {};
-        item_price.review = $("#qty_review").val() * unit_price.review;
-        $("#price_review").val(item_price.review);
+      const qtyReview = parseInt($('#qty_review').val()) || 0;
+      const qtyCover = parseInt($('#qty_cover').val()) || 0;
+      const qtyLinkedIn = parseInt($('#qty_linkedin').val()) || 0;
+      const rushChecked = $('#chk_rush').is(':checked');
 
-        item_price.cover = $("#qty_cover").val() * unit_price.cover;
-        $("#price_cover").val(item_price.cover);
+      const priceReview = qtyReview * unitPrice.review;
+      const priceCover = qtyCover * unitPrice.cover;
+      const priceLinkedIn = qtyLinkedIn * unitPrice.linkedin;
+      const priceRush = rushChecked ? unitPrice.rush : 0;
 
-        item_price.linkedin = $("#qty_linkedin").val() * unit_price.linkedin;
-        $("#price_linkedin").val(item_price.linkedin);
+      $('#price_review').val(`$${priceReview}`);
+      $('#price_cover').val(`$${priceCover}`);
+      $('#price_linkedin').val(`$${priceLinkedIn}`);
+      $('#price_rush').val(`$${priceRush}`);
 
-        item_price.rush = $("#chk_rush").is(":checked") ? unit_price.rush : 0;
-        $("#price_rush").val(item_price.rush);
-
-        let total = item_price.review + item_price.cover + item_price.linkedin + item_price.rush;
-        $("#total_value").text(`$${total}`);
+      const total = priceReview + priceCover + priceLinkedIn + priceRush;
+      $('#total_value').text(`$${total}`);
     }
 
-    $(function() {
-        $(".qty").on("change keyup", calculateTotal);
-        $("#chk_rush").on("change", calculateTotal);
-
-        // Initialize the form
-        calculateTotal();
+    $(document).ready(function () {
+      $('.qty').on('input change', calculateTotal);
+      $('#chk_rush').on('change', calculateTotal);
+      calculateTotal();
     });
 </script>
-
 </body>
 
 </html>
