@@ -52,7 +52,9 @@
                             <a class="dropdown-item" href="contact.html">Contact</a>
                             <a class="dropdown-item" href="mortgage.html">Mortgage Calculator</a>
                             <a class="dropdown-item" href="form-calculator.html">Service Calculator</a>
-                            <a class="dropdown-item" href="social-news.html">Social News</a> <!-- ✅ New Item -->
+                            <a class="dropdown-item" href="social-news.html">Social News</a>
+                            <a class="dropdown-item" href="reflection.html">Reflection</a>
+                            <a class="dropdown-item" href="gallery.html">Gallery</a>
                         </div>
                     </li>
                 </ul>
@@ -100,7 +102,9 @@
 <!-- Footer Section -->
 <footer class="footer_section">
     <div class="container">
-        <p>&copy; <span id="displayYear"></span> Resume Builder. All Rights Reserved.</p>
+        <p>&copy; <span id="displayYear"></span> Resume Builder. All Rights Reserved. |
+            <a href="reflection.html" style="color:#00c6a9; text-decoration:underline;">Reflection</a>
+        </p>
     </div>
 </footer>
 
@@ -115,7 +119,6 @@
     });
 
     function loadSelectedTemplate() {
-        // Get data from localStorage
         const selectedTemplate = localStorage.getItem('selectedTemplate');
         const resumeData = JSON.parse(localStorage.getItem('resumeData') || '{}');
 
@@ -139,7 +142,6 @@
             return;
         }
 
-        // Show loading state
         document.getElementById('resumeContainer').innerHTML = `
             <div class="text-center p-4">
                 <i class="fas fa-spinner fa-spin fa-2x mb-3"></i>
@@ -147,23 +149,19 @@
             </div>
         `;
 
-        // Load the selected template
         fetch(selectedTemplate + '.html')
             .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 return response.text();
             })
             .then(html => {
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(html, 'text/html');
-                const resumeContent = doc.querySelector('.resume-content');
-                
-                if (!resumeContent) {
-                    throw new Error('Template content not found');
-                }
+                // Try to find the main content
+                let resumeContent = doc.querySelector('.wrapper') || doc.querySelector('.resume-content') || doc.body;
+                if (!resumeContent) throw new Error('Template content not found');
 
+                // Insert the template content
                 const container = document.getElementById('resumeContainer');
                 container.innerHTML = resumeContent.outerHTML;
 
@@ -171,19 +169,16 @@
                 Object.keys(resumeData).forEach(key => {
                     const elements = container.querySelectorAll(`[data-field="${key}"]`);
                     elements.forEach(element => {
-                        if (key === 'skills' && Array.isArray(resumeData[key])) {
-                            // Filter out empty skills and join with commas
-                            const validSkills = resumeData[key].filter(skill => skill && skill.trim());
-                            if (validSkills.length > 0) {
-                                element.innerHTML = validSkills
-                                    .map(skill => `<span class="skill-item">${skill.trim()}</span>`)
-                                    .join(', ');
-                            }
-                        } else if (key === 'workExperience' && Array.isArray(resumeData[key])) {
-                            // Handle work experience entries
-                            const validExperiences = resumeData[key].filter(exp => exp && exp.title);
-                            if (validExperiences.length > 0) {
-                                element.innerHTML = validExperiences
+                        // Handle arrays and strings
+                        if (Array.isArray(resumeData[key])) {
+                            if (key === 'skills') {
+                                // For skills, show as comma-separated or as list items
+                                element.innerHTML = resumeData[key]
+                                    .filter(skill => skill && skill.trim())
+                                    .map(skill => `<li>${skill.trim()}</li>`)
+                                    .join('');
+                            } else if (key === 'workExperience' || key === 'experience') {
+                                element.innerHTML = resumeData[key]
                                     .map(exp => `
                                         <div class="experience-item">
                                             <h4>${exp.title || ''}</h4>
@@ -192,12 +187,8 @@
                                             <p class="description">${exp.description || ''}</p>
                                         </div>
                                     `).join('');
-                            }
-                        } else if (key === 'education' && Array.isArray(resumeData[key])) {
-                            // Handle education entries
-                            const validEducation = resumeData[key].filter(edu => edu && edu.degree);
-                            if (validEducation.length > 0) {
-                                element.innerHTML = validEducation
+                            } else if (key === 'education') {
+                                element.innerHTML = resumeData[key]
                                     .map(edu => `
                                         <div class="education-item">
                                             <h4>${edu.degree || ''}</h4>
@@ -239,16 +230,37 @@
     }
 
     function downloadResume() {
-        const element = document.getElementById('resumeContainer');
-        const resumeData = JSON.parse(localStorage.getItem('resumeData'));
-        const filename = `${resumeData.fullName.replace(/\s+/g, '_')}_Resume.pdf`;
+        // Find the main resume content inside the preview
+        const container = document.getElementById('resumeContainer');
+        let resumeContent = container.querySelector('.wrapper') ||
+                            container.querySelector('.resume') ||
+                            container.querySelector('.container');
+        if (!resumeContent) {
+            alert('Could not find resume content to export.');
+            return;
+        }
 
-        // Configure pdf options
+        // Clone the node to avoid layout issues
+        resumeContent = resumeContent.cloneNode(true);
+
+        // Create a temporary div for PDF generation
+        const tempDiv = document.createElement('div');
+        tempDiv.style.background = '#fff';
+        tempDiv.style.padding = '20px';
+        tempDiv.style.width = '800px'; // Standard width for PDF
+        tempDiv.appendChild(resumeContent);
+        document.body.appendChild(tempDiv);
+
+        // Get filename
+        const resumeData = JSON.parse(localStorage.getItem('resumeData'));
+        const filename = `${(resumeData.fullName || 'Resume').replace(/\s+/g, '_')}_Resume.pdf`;
+
+        // PDF options
         const opt = {
-            margin: 1,
+            margin: 0.5,
             filename: filename,
             image: { type: 'jpeg', quality: 0.98 },
-            html2canvas: { scale: 2 },
+            html2canvas: { scale: 2, useCORS: true },
             jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
         };
 
@@ -258,16 +270,17 @@
         downloadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating PDF...';
         downloadBtn.disabled = true;
 
-        // Generate PDF
-        html2pdf().set(opt).from(element).save()
+        html2pdf().set(opt).from(tempDiv).save()
             .then(() => {
-                // Reset button state
+                // Clean up
+                document.body.removeChild(tempDiv);
                 downloadBtn.innerHTML = originalText;
                 downloadBtn.disabled = false;
             })
             .catch(error => {
                 console.error('Error generating PDF:', error);
                 alert('Error generating PDF. Please try again.');
+                document.body.removeChild(tempDiv);
                 downloadBtn.innerHTML = originalText;
                 downloadBtn.disabled = false;
             });
